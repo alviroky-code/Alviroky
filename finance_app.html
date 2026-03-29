@@ -21,16 +21,7 @@
     --text-3:    #6b6585;
     --shadow-card: 0 2px 12px rgba(0,0,0,0.4);
   }
-  body.dark {
-    --bg:        #0f0f14;
-    --surface:   #1a1a24;
-    --surface-2: #22222f;
-    --border:    #2e2e40;
-    --text-1:    #f0effe;
-    --text-2:    #a09ec0;
-    --text-3:    #6b6585;
-    --shadow-card: 0 2px 12px rgba(0,0,0,0.4);
-  }
+
   :root {
       --bg:          #f4f3f8;
       --surface:     #ffffff;
@@ -451,11 +442,6 @@
     /* notas card */
     .research-notes { margin-top:8px; background:var(--surface-2); border-radius:8px; padding:8px 12px; font-size:12px; color:var(--text-2); font-style:italic; border-left:3px solid var(--purple-3); }
 
-    /* semaforo */
-    .semaforo { display:inline-flex; align-items:center; gap:5px; font-size:11px; font-weight:700; border-radius:20px; padding:3px 9px; }
-    .semaforo-verde  { background:#dcfce7; color:#15803d; }
-    .semaforo-naranja{ background:#fef3c7; color:#92400e; }
-    .semaforo-rojo   { background:#fee2e2; color:#b91c1c; }
     .hist-item { display:flex; justify-content:space-between; align-items:center; padding:6px 0; border-bottom:1px solid var(--border); font-size:12px; }
     .hist-item:last-child { border-bottom:none; }
     .cmp-row { display:grid; grid-template-columns:1fr 2fr 2fr; gap:8px; padding:8px 0; border-bottom:1px solid var(--border); align-items:center; font-size:12.5px; }
@@ -650,14 +636,6 @@
       <div id="peso-objetivo-content"></div>
     </div>
 
-    <!-- Peso objetivo -->
-    <div class="card" style="margin-top:18px;">
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
-        <div class="card-label" style="margin-bottom:0;">Peso objetivo por posicion</div>
-        <button class="btn-edit" onclick="togglePesoObjetivo()" id="peso-edit-btn">&#9998; Editar pesos</button>
-      </div>
-      <div id="peso-objetivo-content"></div>
-    </div>
 
     <!-- Composicion de cartera -->
     <!-- Posiciones cerradas -->
@@ -699,55 +677,6 @@
     </div>
   </section>
 
-  <!-- DIVIDENDOS -->
-  <section id="dividendos" class="section">
-    <div class="section-header">
-      <div class="section-tag">Ingresos pasivos</div>
-      <h1 class="section-title">&#127800; <span>Dividendos</span></h1>
-      <p class="section-sub">Historial, proyeccion y analisis de tus ingresos por dividendos.</p>
-    </div>
-
-    <!-- KPI renta anual -->
-    <div class="card-grid card-grid-4" style="margin-bottom:18px;" id="div-kpis"></div>
-
-    <!-- Calendario historico -->
-    <div class="chart-card" style="margin-bottom:18px;">
-      <div class="chart-card-header">
-        <div>
-          <div class="chart-card-title">Calendario de cobros</div>
-          <div class="chart-card-sub">Dividendos cobrados por mes y ano</div>
-        </div>
-        <div style="display:flex;gap:8px;align-items:center;">
-          <button class="btn-edit" onclick="divCalYear(-1)">&#8592;</button>
-          <span id="div-cal-year-label" style="font-weight:700;font-size:14px;min-width:48px;text-align:center;"></span>
-          <button class="btn-edit" onclick="divCalYear(+1)">&#8594;</button>
-        </div>
-      </div>
-      <div id="div-calendario" style="overflow-x:auto;"></div>
-    </div>
-
-    <!-- Barras anuales historico -->
-    <div class="chart-card" style="margin-bottom:18px;">
-      <div class="chart-card-header">
-        <div>
-          <div class="chart-card-title">Resumen anual</div>
-          <div class="chart-card-sub">Total cobrado por ano</div>
-        </div>
-      </div>
-      <div id="div-barras-anuales" style="padding:8px 0;"></div>
-    </div>
-
-    <!-- Proyeccion 12 meses -->
-    <div class="chart-card">
-      <div class="chart-card-header">
-        <div>
-          <div class="chart-card-title">Proyeccion proximos 12 meses</div>
-          <div class="chart-card-sub">Basado en posiciones actuales y dividendo configurado en Research</div>
-        </div>
-      </div>
-      <div id="div-proyeccion" style="overflow-x:auto;"></div>
-    </div>
-  </section>
 
   <!-- DIVIDENDOS -->
   <section id="dividendos" class="section">
@@ -1106,50 +1035,6 @@
     </div>
   </div>
 
-
-  <!-- MODAL DEPOSITO -->
-  <div class="modal-backdrop" id="deposit-modal">
-    <div class="modal" style="max-width:440px;">
-      <div class="modal-title" id="deposit-modal-title">&#43; Nuevo deposito</div>
-      <div class="form-grid">
-        <div class="form-group">
-          <label class="form-label">Fecha</label>
-          <input class="form-input" type="date" id="d-fecha"/>
-        </div>
-        <div class="form-group">
-          <label class="form-label">Tipo</label>
-          <select class="form-select" id="d-tipo">
-            <option value="deposito">Deposito</option>
-            <option value="retirada">Retirada</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label class="form-label">Importe</label>
-          <input class="form-input" type="number" id="d-importe" placeholder="0.00" min="0" step="any"/>
-        </div>
-        <div class="form-group">
-          <label class="form-label">Divisa</label>
-          <select class="form-select" id="d-divisa">
-            <option value="EUR">EUR</option>
-            <option value="USD">USD</option>
-            <option value="GBP">GBP</option>
-            <option value="JPY">JPY</option>
-            <option value="CHF">CHF</option>
-            <option value="CAD">CAD</option>
-            <option value="AUD">AUD</option>
-          </select>
-        </div>
-        <div class="form-group full">
-          <label class="form-label">Notas (opcional)</label>
-          <input class="form-input" type="text" id="d-notas" placeholder="Ej: transferencia desde cuenta corriente"/>
-        </div>
-      </div>
-      <div class="form-actions">
-        <button class="btn-secondary" onclick="closeDepositModal()">Cancelar</button>
-        <button class="btn-primary" onclick="saveDeposit()">Guardar</button>
-      </div>
-    </div>
-  </div>
 
   <!-- INDEX -->
   <section id="index" class="section">
