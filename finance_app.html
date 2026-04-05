@@ -4807,17 +4807,6 @@ showSection = function(id, btn) {
 
 // Init
 bootApp();
-showSection = function(id, btn) {
-  _origShowSection2(id, btn);
-  if (id === 'cartera')   { fetchCarteraPrices(); }
-  if (id === 'dividendos') { renderDividendos(); }
-  if (id === 'finanzas')   { document.getElementById('fp-mes-selector').value = _fpMes; renderFinanzas(); }
-  if (id === 'research')  { syncResearchFromCartera(); fetchResearchPrices(); }
-  if (id === 'dashboard') { renderDashboard(); renderPesoObjetivo(); }
-};
-
-// Init
-bootApp();
 </script>
   </div><!-- end app-wrapper -->
   </div><!-- /app-wrapper -->
