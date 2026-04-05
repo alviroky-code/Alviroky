@@ -4793,23 +4793,26 @@ function renderResearch() {
     renderResearchList(researchData.filter(e => e.side === 'watch'),   'research-watch-list');
   }
 }
-    </script>
 
-// Auto-sync when switching to research tab
+
+// IMPORTANTE: Asegúrate de que todo lo de abajo esté dentro de etiquetas <script>
 const _origShowSection2 = showSection;
 showSection = function(id, btn) {
   _origShowSection2(id, btn);
   if (id === 'cartera')   { fetchCarteraPrices(); }
   if (id === 'dividendos') { renderDividendos(); }
-  if (id === 'finanzas')   { document.getElementById('fp-mes-selector').value = _fpMes; renderFinanzas(); }
+  if (id === 'finanzas')   { 
+    const sel = document.getElementById('fp-mes-selector');
+    if(sel) sel.value = _fpMes; 
+    renderFinanzas(); 
+  }
   if (id === 'research')  { syncResearchFromCartera(); fetchResearchPrices(); }
   if (id === 'dashboard') { renderDashboard(); renderPesoObjetivo(); }
 };
 
-// Init
+// Inicialización
 bootApp();
+
 </script>
-  </div><!-- end app-wrapper -->
-  </div><!-- /app-wrapper -->
 </body>
 </html>
